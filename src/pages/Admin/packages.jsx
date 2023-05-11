@@ -6,7 +6,7 @@ import './packages.css';
 const { Column } = Table;
 
 const PackagesPanel = () => {
-  const [Packages, setPackages] = useState([]);
+  // const [Packages, setPackages] = useState([]);
   const [newPackage, setNewPackage] = useState({
     Name: "",
     City: "",

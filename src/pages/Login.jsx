@@ -5,6 +5,7 @@ import '../styles/login.css'
 // Importing image assets
 import loginImg from '../assets/images/login.png'
 import userIcon from '../assets/images/user.png'
+import { BASE_URL } from '../utils/config'
 
 // Defining Login component
 const Login = () => {
@@ -18,8 +19,22 @@ const Login = () => {
     setCredentials(prev => ({ ...prev, [e.target.id]: e.target.value }));
   };
 // Function to handle click event
-  const handleClick = e=>{
-    e.preventDefault()
+  const handleClick = async e=> 
+  {e.preventDefault()
+    const res=await fetch(`${BASE_URL}/auth/login`, {
+      method: "POST",
+  headers:{
+      'content-type': "application/json",
+  },
+  body: JSON.stringify(credentials),
+})
+  if (res.ok){
+      console.log(credentials);
+      
+  } else {
+      console.log(res.body)
+  }
+  
   }
 // Rendering Login component
   return (

@@ -29,18 +29,20 @@ const Booking = ({tour}) => {
     //send data to the server
     const handleClick=async e=>{
         e.preventDefault();
-
         const res=await fetch(`${BASE_URL}/tours/booking`, {
-            method: "post",
+            method: "POST",
         headers:{
             'content-type': "application/json",
         },
-        credentials: "include",
         body: JSON.stringify(booking),
     })
-
-        console.log(booking);
-        navigate("/thank-you");
+        if (res.ok){
+            console.log(booking);
+            navigate("/thank-you");
+        } else {
+            console.log(res.body)
+        }
+        
     }
   return(
   <div className="booking">
